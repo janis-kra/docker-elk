@@ -1,0 +1,34 @@
+curl -XGET "http://localhost:9200/logstash-contacts/_search?pretty" -d'
+{
+  "query": { "match_all": {} },
+  "sort": [
+    { "uid": "asc" }
+  ]
+}'
+
+curl -XGET "http://localhost:9200/logstash-topics/_search?pretty" -d'
+{
+  "query": {
+    "match": {
+      "title": "topic"
+    }
+  },
+  "sort": [
+    { "id": "asc" }
+  ],
+  "_source": [
+    "id",
+    "title",
+    "description"
+  ]
+}'
+
+curl -XGET "http://localhost:9200/logstash-topics/_search?pretty&size=100" -d'
+{
+  "query" : {
+        "match_all" : {}
+    },
+    "sort": [
+         { "id": "asc" }
+    ]
+}'
